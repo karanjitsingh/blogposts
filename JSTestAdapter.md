@@ -99,6 +99,8 @@ While the adapter was designed to be cross-platform there are still a few issues
 
 #### Conclusion
 
-JSTestAdapter provides a fantastic way of running any kinds of tests through node in a pipeline setting like Azure Devops Pipeline. With support for the latest trend in javascript testing and node runtime, it makes it possible to run about any kind of tests. The javascript tests for the adapter itself are run through the adapter. Checkout the [_testception_](https://dev.azure.com/karanjitsingh/JSTestAdapter/_build/results?buildId=108&view=results) in action for yourself.
+JSTest provides a fantastic way of running any kinds of tests through node in a pipeline setting like Azure Devops Pipeline. With support for the latest trend in javascript, jest, testing and node runtime, it makes it possible to run about any kind of tests.
+
+The javascript tests for the adapter itself are run through the adapter, checkout the [_testception_](https://dev.azure.com/karanjitsingh/JSTestAdapter/_build/results?buildId=108&view=results) in action for yourself.
 
 ###### Source: [JSTestAdapter Repo](https://github.com/karanjitsingh/JSTestAdapter/)
