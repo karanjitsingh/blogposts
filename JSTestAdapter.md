@@ -6,7 +6,7 @@ With all this push to open source and SaaS services and the ever evolving UX des
 #### JSTest to the rescue for your functional test deprived developers 
 JSTestAdapter is an open source test adapter extension for VSTest for running, well you guessed it, any kind of JavaScript tests. With its high extensibility for JavaScript test frameworks and environments, JSTest runs JavaScript with node at its core.
 
-The adapter currently has support for Node as its runtime environment, two major test frameworks, Jasmine and Mocha. It also supports running tests through Jest, so if you can’t leverage extensibility of the adapter for test frameworks and environments, you can utilize Jest. Running tests with JSTest is same as running tests with any other adapter extension of VSTest, whether it be via CLI, Visual Studio or VSTest tasks in Azure Devops. VSTest gets passed a test adapter path, 
+The adapter currently has support for Node as its runtime environment, two major test frameworks, Jasmine and Mocha. It also supports running tests through Jest, so if you can’t leverage extensibility of the adapter for test frameworks and environments, you can utilize Jest. Running tests with JSTest is same as running tests with any other adapter extension of VSTest, whether it be via CLI, Visual Studio or VSTest tasks in Azure Devops. To run tests, simply invoke vstest.console.exe, set the test adapter path as argument and provide the individual test files.
 
 #### Usage
 
