@@ -2,14 +2,15 @@
 VSTest provides tremendous extensibility for running tests from many different frameworks. A single test runner to rule them all. To name just a few - NUnit, xUnit, MSTest. Be it running in Visual Studio, CLI or using VSTest task in Azure Pipelines, this extensibility allows you to run any test and get a consistent experience. 
 
 With services becoming more common and UX evolving consistently for fluid and rich experiences, there is a need for JavaScript testing. JavaScript has a plethora of test frameworks, each with it's own runner. Not all of them plug-in seamlessly across the IDE, CLI and a CI pipeline, the way VSTest does. 
-VSTest does have a JavaScript test adapter called Chutzpah, which leverages the extensibility for a consistent experience. However,  Chutzpah limits the available runtime to PhantomJS. PhantomJS is no longer being actively maintained and many scenarios require you to test with a real browser.
+VSTest does have a JavaScript test adapter called Chutzpah, which leverages the extensibility for a consistent experience. However,  Chutzpah limits the available runtime to PhantomJS. PhantomJS is no longer being actively maintained and also limits you to using ECMAScript 5.
 
 #### JSTest to the rescue  
-JSTestAdapter is an open source test adapter extension for VSTest for running, well you guessed it, any kind of JavaScript tests. With its high extensibility for JavaScript test frameworks and environments, JSTest runs JavaScript with node at its core.
+JSTestAdapter is an open source test adapter extension for VSTest for running, well you guessed it, any kind of JavaScript tests. The adapter has been built with extensibility in mind to allow plugging in a variety of JavaScript test frameworks and environments.
 
-The adapter currently has support for Node as its runtime environment, two major test frameworks - Jasmine and Mocha. It also supports running tests through Jest, so if you can’t leverage extensibility of the adapter for test frameworks and environments, you can utilize Jest. Running tests with JSTest is same as running tests with any other adapter extension of VSTest, whether it be via CLI, Visual Studio or VSTest tasks in Azure Devops. To run tests, simply invoke vstest.console.exe, set the test adapter path as argument and provide the individual test files.
+The adapter currently supports nodejs as its runtime environment and three most popular test runners - mocha, jasmine and jest. 
+The JSTestAdapter allows you to leverage the VSTest capabilities for a seamless test execution experience across the VS IDE, CLI and the VSTest task in Azure Pipelines.
 
-#### Usage
+####  Running JavaScript tests using the vstest.console.exe CLI
 
 Let's take an example of a basic calculator test.
 
@@ -52,7 +53,7 @@ And now to setup `jasmine` and `jstestadapter` npm packages.
 Running this test is as simple as passing the path to the node module and the path to the test file as arguments.
 
 ```powershell
-> vstest.console.exe --TetsAdapterPath:.\node_modules\jstestadapter .\calculatortest.js
+> vstest.console.exe --TestAdapterPath:.\node_modules\jstestadapter .\calculatortest.js
 ```
 
 ![Imgur](https://i.imgur.com/bwrEbDJ.png)
@@ -84,7 +85,7 @@ With RunSettings.xml:
 
 You can find more options for Jest at https://jestjs.io/docs/en/configuration.html
 
-#### Running JavaScript tests in Azure Pipelines
+#### Running JavaScript tests in Azure Pipelines with VSTest task
 
 We can use the VSTest task in Azure Pipelines to run JavaScript tests with VSTest and JSTest. Let's go ahead and create a pipeline and add VSTest task to it.
 
