@@ -8,7 +8,7 @@ VSTest does have a JavaScript test adapter called Chutzpah, which leverages the 
 JSTestAdapter is an open source test adapter extension for VSTest for running, well you guessed it, any kind of JavaScript tests. The adapter has been built with extensibility in mind to allow plugging in a variety of JavaScript test frameworks and environments.
 
 The adapter currently supports nodejs as its runtime environment and three most popular test runners - mocha, jasmine and jest. 
-The JSTestAdapter allows you to leverage the VSTest capabilities for a seamless test execution experience across the VS IDE, CLI and the VSTest task in Azure Pipelines.
+The JSTestAdapter allows you to leverage the VSTest capabilities for a seamless test execution experience across the VS IDE, CLI and the VSTest task in Azure Pipelines. The adapter also leverages the distribution capabilites of VSTest in Azure Pipelines, this especially helps when running time consuming UI tests and L2s.
 
 ####  Running JavaScript tests using the vstest.console.exe CLI
 
