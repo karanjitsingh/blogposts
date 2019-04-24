@@ -10,6 +10,8 @@ JSTestAdapter is an open source test adapter extension for VSTest for running, w
 The adapter currently supports nodejs as its runtime environment and three most popular test runners - mocha, jasmine and jest. 
 The JSTestAdapter allows you to leverage the VSTest capabilities for a seamless test execution experience across the VS IDE, CLI and the VSTest task in Azure Pipelines.
 
+JSTest's deep integration with VSTest and Azure Pipelines enables us to leverage the distribution capability for all three of the runners. It also provides the *MSTest style* capability to upload attachments from tests with [jstestcontext](https://github.com/karanjitsingh/jstestcontext) extension. This is especially helpful for UI test failures, by simply uploading the screenshot of the UI we can figure out what went wrong in the Pipelines itself.
+
 ####  Running JavaScript tests using the vstest.console.exe CLI
 
 Let's take an example of a basic calculator test.
