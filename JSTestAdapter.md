@@ -10,6 +10,8 @@ JSTestAdapter is an open source test adapter extension for VSTest for running, w
 The adapter currently supports nodejs as its runtime environment and three most popular test runners - mocha, jasmine and jest. 
 The JSTestAdapter allows you to leverage the VSTest capabilities for a seamless test execution experience across the VS IDE, CLI and the VSTest task in Azure Pipelines.
 
+JSTest's deep integration with VSTest and Azure Pipelines enables us to leverage the distribution capability for all three of the runners. It also provides the *MSTest style* capability to upload attachments from tests with [jstestcontext](https://github.com/karanjitsingh/jstestcontext) extension. This is especially helpful for UI test failures, by simply uploading the screenshot of the UI we can figure out what went wrong in the Pipelines itself.
+
 ####  Running JavaScript tests using the vstest.console.exe CLI
 
 Let's take an example of a basic calculator test.
@@ -87,13 +89,46 @@ You can find more options for Jest at https://jestjs.io/docs/en/configuration.ht
 
 #### Running JavaScript tests in Azure Pipelines with VSTest task
 
-We can use the VSTest task in Azure Pipelines to run JavaScript tests with VSTest and JSTest. Let's go ahead and create a pipeline and add VSTest task to it.
+We can use the VSTest task in Azure Pipelines to run JavaScript tests with VSTest and JSTest. 
 
-![Imgur](https://i.imgur.com/wVinSKh.png)
+1. First, let's go ahead and create a pipeline and add VSTest task to it.
 
-We configure the task with runsettings.xml and a test match pattern for JavaScript files
+    ![Imgur](https://i.imgur.com/wVinSKh.png)
 
-![Imgur](https://i.imgur.com/gsDeQcX.png)
+2. Now that we've added the task let's set it up to run JavaScript tests with `jstestadapter`, we fill in the test pattern for the test files and make sure to exclude js files from node_modules.
+
+   ![Imgur](https://i.imgur.com/ONBBy1r.png)
+
+3. Finally, we configure the task with `RunSettings.xml` and a path to the `jstestadapter` node module as the path to the tests adapter path
+
+   ![Imgur](https://i.imgur.com/cKoZIJl.png)
+
+Here's the yaml for the same:
+
+```yml
+- task: VSTest@2
+  displayName: 'VsTest - testAssemblies'
+  inputs:
+    testAssemblyVer2: |
+     **\*Tests.js
+     !**\node_modules\**\*.js
+    runSettingsFile: RunSettings.xml
+    pathtoCustomTestAdapters: '$(System.DefaultWorkingDirectory)\node_modules\jstestadapter'
+```
+
+#### Distributing JavaScript tests in Azure Pipelines with VSTest task
+
+To run these tests with distribution across multiple agents:
+
+1. First we need to configure the job for multi-agent parallelism.
+
+   ![Imgur](https://i.imgur.com/B63yBoF.png)
+
+2. Next, we go ahead and configure distribution in the task. In this particular scenario, default values for distribution remains same. So as long as we've enabled multi-agent parallelism in the pipeline we do not need to change any property for Advanced Execution in VSTest. Hence the yaml for the task remains the same.
+
+   ![Imgur](https://i.imgur.com/Uv1IBRC.png)
+
+*Since multi-configuration and multi-agent job options are not exported to YAML. They can be configured by following this guide, https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml.*
 
 #### Limitations
 
